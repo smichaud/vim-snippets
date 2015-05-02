@@ -25,8 +25,14 @@ endglobal
 ###########################################################################
 #                            TextMate Snippets                            #
 ###########################################################################
-snippet #! "#!/usr/bin/env (!env)"
-`!p snip.rv = '#!/usr/bin/env ' + getShell() + "\n\n" `
+snippet #! "#!/usr/bin/env bash"
+#!/usr/bin/env bash
+
+
+endsnippet
+
+snippet read "input a variable"
+read -p "${1:Question}" ${0:variable}
 endsnippet
 
 snippet if "if ... then (if)"
