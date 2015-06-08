@@ -2,7 +2,7 @@ priority -50
 
 extends texmath
 
-snippet "b(egin)?" "begin{} / end{}" br
+snippet "begin" "begin{} / end{}" br
 \begin{${1:something}}
 	${0:${VISUAL}}
 \end{$1}
@@ -41,9 +41,8 @@ snippet desc "Description" b
 \end{description}
 endsnippet
 
-snippet it "Individual item" b
-\item ${1}
-$0
+snippet it "Individual item"
+\item ${0}
 endsnippet
 
 snippet part "Part" b
@@ -106,5 +105,33 @@ endsnippet
 
 snippet lp "Long parenthesis"
 \left(${1:${VISUAL:contents}}\right)$0
+endsnippet
+
+snippet b "Bold ...  \textit{}"
+\textbf{$1}$0
+endsnippet
+
+snippet i "Italic ...  \textit{}"
+\textit{$1}$0
+endsnippet
+
+snippet cal "Mathcal ... \mathcal{}"
+\mathcal{$1}$0
+endsnippet
+
+snippet sm "Small ... {\small}"
+{\small $1}$0
+endsnippet
+
+snippet vspace "Vertical space ... \vspace{}"
+\vspace{$1}$0
+endsnippet
+
+snippet hspace "Horizontal space ... \hspace{}"
+\hspace{$1}$0
+endsnippet
+
+snippet todo "Todo comment... % TODO"
+% [TODO]: ${1:Description} - `!v strftime("%Y-%m-%d %I:%M%P")`
 endsnippet
 # vim:ft=snippets:
