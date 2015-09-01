@@ -37,14 +37,24 @@ namespace${1/.+/ /m}${1:`!p snip.rv = snip.basename or "name"`} {
 }${1/.+/ \/* /m}$1${1/.+/ *\/ /m}
 endsnippet
 
-snippet readfile "read file (readF)"
-std::vector<char> v;
-if(FILE *fp = fopen(${1:"filename"}, "r")) {
-	char buf[1024];
-	while(size_t len = fread(buf, 1, sizeof(buf), fp))
-		v.insert(v.end(), buf, buf + len);
-	fclose(fp);
+snippet readfile "read file ifsteam"
+std::string line;
+std::ifstream myfile ("example.txt");
+if (myfile.is_open()) {
+	while(getline(myfile,line)) {
+		cout << line << '\n';
+	}
+	myfile.close();
+} else {
+		cout << "Unable to open file"; 
 }
+endsnippet
+
+snippet writefile "write file ofstream"
+std::ofstream outputFile;
+outputFile.open("example.txt");
+outputFile << "Writing this to a file.\n";
+outputFile.close();
 endsnippet
 
 snippet map "std::map (map)"
@@ -61,6 +71,10 @@ endsnippet
 
 snippet todo "A Todo comment"
 // [TODO]: ${1:Description} - `!v strftime("%Y-%m-%d %I:%M%P")`
+endsnippet
+
+snippet rosi "ROS_INFO()"
+ROS_INFO("${1}");${0}
 endsnippet
 
 # vim:ft=snippets:
