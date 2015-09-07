@@ -1,69 +1,177 @@
-snippet cmake
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
-PROJECT(${1:ProjectName})
+snippet cmake "cmake template"
+cmake_minimum_required(VERSION 2.8)
+project(${1:ProjectName})
 
-FIND_PACKAGE(${2:LIBRARY})
+add_definitions(-std=c++11)
+set(CMAKE_EXPORT_COMPILE_COMMANDS "ON")
 
-INCLUDE_DIRECTORIES(
-    ${$2_INCLUDE_DIR}
-)
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
-ADD_SUBDIRECTORY(${0:src})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-ADD_EXECUTABLE($1)
-
-TARGET_LINK_LIBRARIES($1
-    ${$2_LIBRARIES}
-)
+add_executable(${3:${PROJECT_NAME}} ${0:src/main.cpp})
 endsnippet
 
-snippet include
-INCLUDE_DIRECTORIES(
+snippet pro "Project name" i
+${PROJECT_NAME}
+endsnippet
+
+snippet c++11 "set c++11"
+add_definitions(-std=c++11)
+endsnippet
+
+snippet bindir "Set bin dir"
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+endsnippet
+
+snippet libdir "Set lib dir"
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+endsnippet
+
+snippet current "Current dir" i
+${CMAKE_CURRENT_SOURCE_DIR}
+endsnippet
+
+snippet print "show message"
+message(${1:STATUS} ${0:"Message"})
+endsnippet
+
+snippet inc "Include dir"
+include_directories(
     ${${0:INCLUDE_DIR}}
 )
 endsnippet
 
-snippet find
-FIND_PACKAGE(${0:LIBRARY})
-endsnippet
-
-snippet glob
-FILE(GLOB ${1:SRCS} *.${0:cpp})
-endsnippet
-
-snippet subdir
-ADD_SUBDIRECTORY(${0:src})
-endsnippet
-
-snippet lib
-ADD_LIBRARY(${1:lib} ${2:STATIC}
+snippet lib "Add lib"
+add_library(${1:lib} ${2:STATIC}
     ${${0:SRCS}}
 )
 endsnippet
 
-snippet link
-TARGET_LINK_LIBRARIES(${1:bin}
+snippet find "Find package"
+find_package(${0:LIBRARY})
+endsnippet
+
+snippet exec "Add executable"
+add_executable(${1:bin})
+endsnippet
+
+snippet link "Link lib"
+target_link_libraries(${1:bin}
     ${0:somelib}
 )
 endsnippet
 
-snippet bin
-ADD_EXECUTABLE(${1:bin})
+snippet sources "Recursive sources"
+file(GLOB_RECURSE
+     SOURCE_FILES
+     ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 endsnippet
 
-snippet set
-SET(${1:var} ${0:val})
+snippet headers "Recursive headers" 
+file(GLOB_RECURSE
+     HEADER_FILES
+     ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
 endsnippet
 
-snippet dep
-ADD_DEPENDENCIES(${1:target}
+snippet warn "Show all warnings"
+set(
+    CMAKE_CXX_FLAGS
+    "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wno-long-long -pedantic -Wconversion")
+endsnippet
+
+snippet copy "Copy files"
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/config
+    DESTINATION ${CMAKE_BINARY_DIR}/${PROJECT_NAME}
+    )
+endsnippet
+
+snippet glob "Glob files list"
+file(GLOB ${1:SRCS} *.${0:cpp})
+endsnippet
+
+snippet subdir "Add subdir"
+add_subdirectory(${0:src})
+endsnippet
+
+snippet set "Set variable"
+set(${1:var} ${0:val})
+endsnippet
+
+snippet dep "Add dependencies"
+add_dependencies(${1:target}
     ${0:dep}
 )
 endsnippet
 
-snippet props
-SET_TARGET_PROPERTIES(${1:target}
+snippet props "Set properties"
+set_target_properties(${1:target}
     ${2:PROPERTIES} ${3:COMPILE_FLAGS}
     ${0:"-O3 -Wall -pedantic"}
 )
 endsnippet
+
+snippet qt4 "Include qt4"
+set(CMAKE_AUTOMOC ON)
+find_package(Qt4 REQUIRED)
+include(${QT_USE_FILE})
+QT4_WRAP_UI(UI_SOURCE_FILES ui/mainwindow.ui)
+
+target_link_libraries(${0:Exec} ${QT_LIBRARIES})
+endsnippet
+
+snippet pointmatcher "Use LibPointMatcher"
+find_package(pointmatcher 1.1.0 REQUIRED)
+include_directories("${POINTMATCHER_INCLUDE_DIRS}")
+message(STATUS "Using libpointmatcher version ${pointmatcher_VERSION}")
+
+target_link_libraries(${PROJECT_NAME} ${POINTMATCHER_LIBRARIES})
+endsnippet
+
+snippet boost "Use boost"
+find_package(Boost COMPONENTS filesystem system)
+include_directories(include ${Boost_INCLUDE_DIRS})
+
+target_link_libraries(${0:Exec} ${Boost_LIBS})
+endsnippet
+
+snippet eigen "Use eigen"
+find_package(Eigen3 REQUIRED)
+include_directories(include ${EIGEN3_INCLUDE_DIRS})
+endsnippet
+
+snippet opencv "Use opencv"
+find_package(OpenCV REQUIRED)
+
+target_link_libraries(${0:Exec} ${OpenCV_LIBS})
+endsnippet
+
+snippet pcl "Use PCL"
+find_package(PCL 1.3 REQUIRED COMPONENTS common io)
+include_directories(${PCL_INCLUDE_DIRS})
+link_directories(${PCL_LIBRARY_DIRS})
+add_definitions(${PCL_DEFINITIONS})
+
+target_link_libraries(${0:Exec} ${PCL_COMMON_LIBRARIES} ${PCL_IO_LIBRARIES})
+endsnippet
+
+snippet gtest "GTest template"
+include_directories($ENV{GMOCK_HOME}/include $ENV{GMOCK_HOME}/gtest/include)
+link_directories($ENV{GMOCK_HOME}/build $ENV{GMOCK_HOME}/gtest/build)
+
+file(GLOB_RECURSE
+     TEST_SOURCE_FILES
+     ${CMAKE_CURRENT_SOURCE_DIR}/test/*.cpp)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/test)
+
+add_executable(test
+               ${TEST_SOURCE_FILES}
+               ${SOURCE_FILES}
+               ${CMAKE_CURRENT_SOURCE_DIR}/test/)
+target_link_libraries(test pthread)
+target_link_libraries(test gmock)
+target_link_libraries(test gtest)
+endsnippet
+
