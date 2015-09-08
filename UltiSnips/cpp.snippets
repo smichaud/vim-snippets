@@ -51,10 +51,10 @@ if (myfile.is_open()) {
 endsnippet
 
 snippet writefile "write file ofstream"
-std::ofstream outputFile;
-outputFile.open("example.txt");
-outputFile << "Writing this to a file.\n";
-outputFile.close();
+std::ofstream ${1:outputFile};
+$1.open(${2:"example.txt"});
+$1 << ${0:"Writing this to a file.\n"};
+$1.close();
 endsnippet
 
 snippet map "std::map (map)"
