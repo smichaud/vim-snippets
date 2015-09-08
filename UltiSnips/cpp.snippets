@@ -23,7 +23,7 @@ private:
 };
 endsnippet
 
-snippet th "this->"
+snippet th "this->" i
 this->
 endsnippet
 
@@ -61,11 +61,11 @@ snippet map "std::map (map)"
 std::map<${1:key}, ${2:value}> map$0;
 endsnippet
 
-snippet vector "std::vector (v)"
+snippet vect "std::vector (v)"
 std::vector<${1:char}> v$0;
 endsnippet
 
-snippet tp "template <typename ..> (template)"
+snippet temp "template <typename ..> (template)"
 template <typename ${1:_InputIter}>
 endsnippet
 
@@ -75,6 +75,29 @@ endsnippet
 
 snippet rosi "ROS_INFO()"
 ROS_INFO("${1}");${0}
+endsnippet
+
+snippet mpinit "OpenMP init num thread"
+omp_set_num_threads(omp_get_num_procs());
+endsnippet
+
+snippet mpfor "OpenMP for"
+#pragma omp parallel for
+for(int i = 0; i < size; ++i) {
+	${0}
+}
+endsnippet
+
+snippet mpiter "OpenMP iterator"
+#pragma omp parallel
+{
+	for (auto i = vect.begin(); i != vect.end(); ++i) {
+		#pragma omp single nowait
+		{
+			${0}
+		}
+	}
+}
 endsnippet
 
 # vim:ft=snippets:
