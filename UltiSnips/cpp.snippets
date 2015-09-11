@@ -77,18 +77,37 @@ snippet rosi "ROS_INFO()"
 ROS_INFO("${1}");${0}
 endsnippet
 
+snippet ompsec "OpenMP sections"
+#pragma omp parallel sections
+{
+	#pragma omp section
+	{
+	}
+	#pragma omp section
+	{
+	}
+}
+endsnippet
+
 snippet mpinit "OpenMP init num thread"
 omp_set_num_threads(omp_get_num_procs());
 endsnippet
 
-snippet mpfor "OpenMP for"
+snippet ompfor "OpenMP for"
 #pragma omp parallel for
 for(int i = 0; i < size; ++i) {
 	${0}
 }
 endsnippet
 
-snippet mpiter "OpenMP iterator"
+snippet ompforor "OpenMP for ordered"
+#pragma omp parallel for ordered
+for(int i = 0; i < size; ++i) {
+	${0}
+}
+endsnippet
+
+snippet ompiter "OpenMP iterator"
 #pragma omp parallel
 {
 	for (auto i = vect.begin(); i != vect.end(); ++i) {
