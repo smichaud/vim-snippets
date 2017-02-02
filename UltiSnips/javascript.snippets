@@ -171,4 +171,16 @@ snippet req "require an AMD module"
 require([${1:'dependencies'}], ${2:callback});
 endsnippet
 
+snippet write "document.write()"
+document.write(${1:'Write here'})${0}
+endsnippet
+
+snippet log "console.log()"
+console.log(${1:'Write here'})${0}
+endsnippet
+
+snippet todo "//TODO: " b
+// TODO: ${0:Reminder}
+endsnippet
+
 # vim:ft=snippets:

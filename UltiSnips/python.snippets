@@ -5,10 +5,22 @@ priority -50
 ###########################################################################
 
 #! header
-snippet #! "Shebang header for python scripts" b
-#!/usr/bin/env python
+snippet shebang "Shebang header for python scripts" b
+#!/usr/bin/env python3
 # encoding: utf-8
 $0
+endsnippet
+
+snippet main "main structure"
+${1:import sys}
+
+
+def main(${2:argv}):
+	${0:pass}
+
+
+if __name__ == '__main__':
+	main(${3:sys.argv[1:]})
 endsnippet
 
 snippet ifmain "ifmain" b
@@ -19,6 +31,11 @@ endsnippet
 snippet for "for loop" b
 for ${1:item} in ${2:iterable}:
 	${3:pass}
+endsnippet
+
+snippet while "while loop" b
+while ${1:condition} :
+	${0:pass}
 endsnippet
 
 ##########
@@ -163,26 +180,11 @@ endglobal
 # Class & Special Method Name Snippets #
 ########################################
 
-snippet class "class with docstrings" b
+snippet class "class" b
 class ${1:MyClass}(${2:object}):
-
-	`!p snip.rv = triple_quotes(snip)`${3:Docstring for $1. }`!p snip.rv = triple_quotes(snip)`
-
-	def __init__(self$4):
-		`!p snip.rv = triple_quotes(snip)`${5:TODO: to be defined1.}`!p
-snip.rv = ""
-snip >> 2
-
-args = get_args(t[4])
-
-write_docstring_args(args, snip)
-if args:
-	snip.rv += '\n' + snip.mkline('', indent='')
-	snip += '{0}'.format(triple_quotes(snip))
-
-write_init_body(args, t[2], snip)
-`
-		$0
+	def __init__(self${3}):
+		${0:pass}
+		
 endsnippet
 
 
@@ -396,21 +398,7 @@ def __coerce__(self, other):
 endsnippet
 
 snippet def "function with docstrings" b
-def ${1:function}(`!p
-if snip.indent:
-	snip.rv = 'self' + (", " if len(t[2]) else "")`${2:arg1}):
-	`!p snip.rv = triple_quotes(snip)`${4:TODO: Docstring for $1.}`!p
-snip.rv = ""
-snip >> 1
-
-args = get_args(t[2])
-if args:
-	write_docstring_args(args, snip)
-
-style = get_style(snip)
-snip += format_return(style)
-snip.rv += '\n' + snip.mkline('', indent='')
-snip += triple_quotes(snip) `
+def ${1:function_name}(${2:args}):
 	${0:pass}
 endsnippet
 
@@ -581,6 +569,14 @@ class Test${1:Class}(${2:unittest.TestCase}):
 
 	def test_${6:name}(self):
 		${7:pass}
+endsnippet
+
+snippet print "print()" b
+print("${1:Text here}")${0}
+endsnippet
+
+snippet todo "#TODO: " b
+# TODO: ${0:Do not forget to do this}
 endsnippet
 
 # vim:ft=snippets:
