@@ -173,7 +173,7 @@ snip.rv = snip.fn and 'Hallo' or 'Nothin'
 endsnippet
 
 snippet div "XHTML <div>" w
-<div`!p snip.rv=' id="' if t[1] else ""`${1:name}`!p snip.rv = '"' if t[1] else ""``!p snip.rv=' class="' if t[2] else ""`${2:name}`!p snip.rv = '"' if t[2] else ""`>
+<div>
 	$0
 </div>
 endsnippet
@@ -225,7 +225,7 @@ snippet style "XHTML <style>" w
 endsnippet
 
 snippet table "XHTML <table>" w
-<table border="${1:0}"${2: cellspacing="${3:5}" cellpadding="${4:5}"}>
+<table>
 	<tr><th>${5:Header}</th></tr>
 	<tr><td>${0:Data}</td></tr>
 </table>
