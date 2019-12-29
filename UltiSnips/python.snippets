@@ -397,8 +397,13 @@ def __coerce__(self, other):
 	${25:pass}
 endsnippet
 
-snippet def "function with docstrings" b
+snippet fun "function" b
 def ${1:function_name}(${2:args}):
+	${0:pass}
+endsnippet
+
+snippet meth "method" b
+def ${1:function_name}(self, ${2:args}):
 	${0:pass}
 endsnippet
 
@@ -571,12 +576,62 @@ class Test${1:Class}(${2:unittest.TestCase}):
 		${7:pass}
 endsnippet
 
+snippet pytest "pytest file template" b
+import pytest 
+import mock
+
+
+@pytest.fixture(autouse=True)
+def fixture_name():
+	yield
+
+
+@pytest.mark.${1:unit}
+def test_given${2:}_when${3:}_then${4:}(${5:fixtures}):
+    ${0:pytest.fail("Not implemented")}
+endsnippet
+
+snippet pyt "pytest test template" b
+@pytest.mark.${1:unit}
+def test_given${2:}_when${3:}_then${4:}(${5:fixtures}):
+    ${0:pytest.fail("Not implemented")}
+endsnippet
+
+snippet pytfix "pytest fixture" b
+@pytest.fixture(${1:autouse=True, scope="module"})
+def ${2:fixture_name}():
+    patcher = mock.patch("${3:module.path}", ${4:some_attribute=some_value})
+    patched_mock = patcher.start()
+    yield ${0:patched_mock}
+    patcher.stop()
+endsnippet
+
+snippet mockcallargs "retrieve mock call args" b
+args, kwargs = ${1:mock_name}.call_args_list[${2:call_index}]
+endsnippet
+
+snippet mockassany "mock.assert_any_call" b
+${1:mock_name}.assert_any_call(${2:args_matcher})${0}
+endsnippet
+
 snippet print "print()" b
 print("${1:Text here}")${0}
 endsnippet
 
-snippet todo "#TODO: " b
+snippet todo "#TODO: " i
 # TODO: ${0:Do not forget to do this}
+endsnippet
+
+snippet printd "debug print " b
+print("\n============================================")
+print(f"${0:Debug: }$1: {${1:some_var}}")
+print("============================================\n")
+endsnippet
+
+snippet sleepd "debub sleep" b
+print("\n======= Sleep for ${1:10} seconds")
+time.sleep($1)
+${0}
 endsnippet
 
 # vim:ft=snippets:
