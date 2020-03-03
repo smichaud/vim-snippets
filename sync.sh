@@ -6,7 +6,7 @@
 
 cd "$(dirname "$0")"
 
-log_file="/home/smichaud/Desktop/vim-snippets-sync.log"
+log_file="./sync.log"
 
 eval `ssh-agent` $>> $log_file
 ssh-add /home/smichaud/.ssh/github $>> $log_file
