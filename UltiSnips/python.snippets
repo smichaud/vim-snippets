@@ -607,15 +607,10 @@ def ${2:fixture_name}():
 endsnippet
 
 snippet mocker "mocker pytest fixture" b
-@pytest.fixture(${1:autouse=True, scope="module"})
-def ${2:fixture_name}():
-    patcher = mock.patch("${3:module.path}", ${4:some_attribute=some_value})
-    patched_mock = patcher.start()
-    yield ${0:patched_mock}
-    patcher.stop()
+@pytest.fixture()
+def ${1:fixture_name}():
+    return mocker.patch(f"{TESTED_MODULE}.{0:tested_fct}")
 endsnippet
-
-
 
 snippet mockcallargs "retrieve mock call args" b
 args, kwargs = ${1:mock_name}.call_args_list[${2:call_index}]
