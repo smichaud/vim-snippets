@@ -23,6 +23,19 @@ if __name__ == '__main__':
 	main(${3:sys.argv[1:]})
 endsnippet
 
+snippet mainf "main structure with fire"
+${1:import fire}
+
+
+def main(${2:args}):
+	${0:pass}
+
+
+if __name__ == '__main__':
+	fire.Fire(${3:main})
+endsnippet
+
+
 snippet ifmain "ifmain" b
 if __name__ == '__main__':
 	${1:main()}$0
