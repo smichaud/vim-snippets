@@ -648,6 +648,20 @@ print(f"${0:Debug: }$1: {${1:some_var}}")
 print("============================================\n")
 endsnippet
 
+snippet logi "log.info " b
+logger.info(f"${1:info}")${0}
+endsnippet
+
+snippet logw "log.warning " b
+logger.warning(f"${1:warning}")${0}
+endsnippet
+
+snippet loge "log.error " b
+logger.error(f"${1:error}")${0}
+endsnippet
+
+
+
 snippet sleepd "debub sleep" b
 print("\n======= Sleep for ${1:10} seconds")
 time.sleep($1)
