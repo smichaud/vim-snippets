@@ -1,5 +1,22 @@
 priority -50
 
+snippet vim "Vim coc-settings" b
+{
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Args": ["--ignore=E501,W503"],
+    "python.formatting.provider": "black",
+    "coc.preferences.formatOnSaveFiletypes": [
+        "python",
+        "javascript",
+        "html",
+        "markdown",
+        "json",
+        "css"
+    ]
+}$0
+endsnippet
+
 snippet s "String" b
 "${1:key}": "${0:value}",
 endsnippet

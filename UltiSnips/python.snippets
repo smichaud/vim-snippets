@@ -598,11 +598,19 @@ from unittest import mock
 def test_given${2:}_when${3:}_then${4:}(${5:fixtures}):
     ${0:pytest.fail("Not implemented")}
 
-
-@pytest.fixture(autouse=True)
-def fixture_name():
-	yield
 endsnippet
+
+snippet pytestc "pytest file template" b
+import pytest 
+from unittest import mock
+
+class Test${1:WhatIsTested}:
+	@pytest.mark.${2:unit}
+	def test_given${3:}_when${4:}_then${5:}(self${6:, fixtures}):
+		${0:pytest.fail("Not implemented")}
+
+endsnippet
+
 
 snippet pyt "pytest test template" b
 @pytest.mark.${1:unit}
