@@ -677,4 +677,16 @@ time.sleep($1)
 ${0}
 endsnippet
 
+snippet prop "@property, @x.setter" b
+@property
+def x(self):
+    return self._x
+
+@x.setter
+def x(self, value):
+    self._x = value
+endsnippet
+
+
+
 # vim:ft=snippets:
