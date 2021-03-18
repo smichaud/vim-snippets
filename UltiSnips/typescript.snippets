@@ -120,16 +120,24 @@ endsnippet
 
 # Perso
 
-snippet act "React Testing Library act" b
-await act(async () => {
-	${0:Some action that update dom}
+snippet describe "Jest describe" b
+describe("$1", () => {
+	it("$2", () => {
+		const value = false;
+		expect(value).toBeFalsy();$0
+	});
 });
 endsnippet
 
-
 snippet it "Jest it" b
-it("", () => {
+it("$1", () => {
 	const value = false;
-	expect(value).toBeFalsy();
+	expect(value).toBeFalsy();$0
+});
+endsnippet
+
+snippet act "React Testing Library act" b
+await act(async () => {
+	${0:Some action that update dom}
 });
 endsnippet
