@@ -121,6 +121,12 @@ endsnippet
 # Perso
 
 snippet describe "Jest describe" b
+useEffect(() => {
+}, []);
+endsnippet
+
+
+snippet describe "Jest describe" b
 describe("$1", () => {
 	it("$2", () => {
 		const value = false;
@@ -141,3 +147,5 @@ await act(async () => {
 	${0:Some action that update dom}
 });
 endsnippet
+
+
