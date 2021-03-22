@@ -127,7 +127,7 @@ useEffect(() => {
 endsnippet
 
 
-snippet describe "Jest describe" b
+snippet desc "Jest describe" b
 describe("$1", () => {
 	it("$2", () => {
 		const value = false;
@@ -140,6 +140,19 @@ snippet it "Jest it" b
 it("$1", () => {
 	const value = false;
 	expect(value).toBeFalsy();$0
+});
+endsnippet
+
+snippet iteach "Jest parametrized it" b
+it.each`
+    testCase                     | index                 | expected
+    ${"zer0"}                    | ${0}                  | ${"/an"}
+    ${"is the same as subUrls"}  | ${subUrls.length - 1} | ${"/an/url/to/be/tested"}
+    ${"is lower than subUrls"}   | ${subUrls.length - 2} | ${"/an/url/to/be"}
+`("should return $expected if index is $testCase", ({ index, expected }) => {
+    const url = rebuildUrlUpToIndex(subUrls, index);
+
+    expect(url).toEqual(expected);
 });
 endsnippet
 
