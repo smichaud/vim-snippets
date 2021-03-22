@@ -144,16 +144,17 @@ it("$1", () => {
 endsnippet
 
 snippet iteach "Jest parametrized it" b
-it.each`
-    testCase                     | index                 | expected
-    ${"zer0"}                    | ${0}                  | ${"/an"}
-    ${"is the same as subUrls"}  | ${subUrls.length - 1} | ${"/an/url/to/be/tested"}
-    ${"is lower than subUrls"}   | ${subUrls.length - 2} | ${"/an/url/to/be"}
-`("should return $expected if index is $testCase", ({ index, expected }) => {
-    const url = rebuildUrlUpToIndex(subUrls, index);
+todo
+# it.each`
+#     testCase                     | index                 | expected
+#     ${"zer0"}                    | ${0}                  | ${"/an"}
+#     ${"is the same as subUrls"}  | ${subUrls.length - 1} | ${"/an/url/to/be/tested"}
+#     ${"is lower than subUrls"}   | ${subUrls.length - 2} | ${"/an/url/to/be"}
+# `("should return $expected if index is $testCase", ({ index, expected }) => {
+#     const url = rebuildUrlUpToIndex(subUrls, index);
 
-    expect(url).toEqual(expected);
-});
+#     expect(url).toEqual(expected);
+# });
 endsnippet
 
 snippet act "React Testing Library act" b
