@@ -687,6 +687,11 @@ def x(self, value):
     self._x = value
 endsnippet
 
+snippet write "Write to file"
+with open("${1:myfile.txt}", "${2:w|r|r+}") as ${3:file_handle}:
+    file_handle.write("Hello \n")
+    file_handle.writelines(L)
+endsnippet
 
 
 # vim:ft=snippets:
