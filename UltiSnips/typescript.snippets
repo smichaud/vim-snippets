@@ -173,3 +173,13 @@ endsnippet
 snippet expectfindby "mathjs unit conversion"
 expect(await screen.findByText("${1:text}")).toBeInTheDocument();${0}
 endsnippet
+
+snippet debugtest "react testing lib debug"
+await act(async () => { screen.debug(document, 9999999); });
+endsnippet
+
+snippet debugreacthookform "debug rhf with useEffect"
+useEffect(() => { console.log(`height: ${watch("rhf_name")}`); }, [watch]);
+endsnippet
+
+
