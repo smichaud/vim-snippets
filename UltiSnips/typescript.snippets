@@ -162,7 +162,14 @@ await act(async () => {
 });
 endsnippet
 
-snippet waitFor "waitFor(()=>{})"
+snippet waitfor "waitFor(()=>{})"
 await waitFor(() => {})
 endsnippet
 
+snippet unit "mathjs unit conversion"
+unit(${1:value}).toNumber("${2:unit}").toFixed(${3:decimals})$0
+endsnippet
+
+snippet expectfindby "mathjs unit conversion"
+expect(await screen.findByText("200")).toBeInTheDocument();
+endsnippet
