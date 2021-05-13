@@ -96,6 +96,12 @@ snippet log "console.log" i
 console.log(${1:"${2:value}"})
 endsnippet
 
+snippet logd "console.log with lines" i
+console.log("=========================================")
+console.log(${1:"${2:value}"})
+console.log("=========================================")
+endsnippet
+
 snippet meth "class/object method" b
 ${2:methodName}(${3:args}): ${4:void} {
 		${0://code}
