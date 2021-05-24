@@ -159,13 +159,11 @@ it("$1", async() => {
 });
 endsnippet
 
-
-
 snippet iteach "Jest parametrized it" b
-test.each`
+test.each\`
   a    | b    | expected
-  ${1} | ${1} | ${2}
-`('returns $expected when $a is added $b', ({a, b, expected}) => {
+  \${1} | \${1} | $\{2}
+\`('returns $expected when $a is added $b', ({a, b, expected}) => {
   expect(a + b).toBe(expected);
 });
 endsnippet
