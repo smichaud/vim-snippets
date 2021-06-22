@@ -630,6 +630,14 @@ def mock_${1:fixture_name}():
     return mocker.patch(f"{TESTED_MODULE}.{0:tested_fct}")
 endsnippet
 
+snippet pytparam "parametrize pytest" b
+@pytest.mark.parametrize(
+    'name, expected', [('Claire', 'Mrs'), ('Jay', 'Mr')]
+)
+def test_both_sex_v2(name, expected):
+    assert expected == get_gender_heading(name)
+endsnippet
+
 snippet mockcallargs "retrieve mock call args" b
 args, kwargs = ${1:mock_name}.call_args_list[${2:call_index}]
 endsnippet
