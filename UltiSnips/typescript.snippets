@@ -142,6 +142,15 @@ useEffect(() => {
 }, [someValue]);
 endsnippet
 
+snippet testfile "Jest describe" b
+jest.mock("../toMock");
+describe("$1", () => {
+	it("$2", () => {
+		const value = false;
+		expect(value).toBeFalsy();$0
+	});
+});
+endsnippet
 
 snippet desc "Jest describe" b
 describe("$1", () => {
