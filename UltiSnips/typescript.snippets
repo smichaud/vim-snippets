@@ -203,8 +203,8 @@ snippet debugreacthookform "debug rhf with useEffect"
 useEffect(() => { console.log(`height: ${watch("rhf_name")}`); }, [watch]);
 endsnippet
 
-snippet mockf "mock function (import the actual function)"
-(fetchProjectFieldValues as jest.Mock).mockResolvedValue(["sello"]);
+snippet mockf "mock function"
+(${1:theActuallyImportedFunctionToMock} as jest.Mock).${0:mockResolvedValue([])};
 endsnippet
 
 snippet mockm "mock module"
