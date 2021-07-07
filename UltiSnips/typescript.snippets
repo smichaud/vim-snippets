@@ -216,6 +216,11 @@ jest.mock("../../commons/fetchFieldValues.ts", () => ({
 }));
 endsnippet
 
+snippet spyon "spyon function, keep implementation"
+import * as convertArrayValues from "../../convertArrayValues";
+const spyConvertAllToString = jest.spyOn(convertArrayValues, "convertAllToString");
+endsnippet
+
 snippet f "arrow function"
 (${1:args}): ${2:type} => {${0:code}}
 endsnippet
