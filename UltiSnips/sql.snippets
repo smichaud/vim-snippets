@@ -1,0 +1,9 @@
+priority -50
+
+snippet select "select * from..." w
+select ${1:star} from "${2:table}" where ${3:"column"='value'} limit ${4:200}$0
+endsnippet
+
+snippet update "update" w
+update ${1:table} set "${2:"column1"='textValue', "column2" = TRUE}" where ${3:id = 'uuid'} limit ${4:200}$0
+endsnippet
